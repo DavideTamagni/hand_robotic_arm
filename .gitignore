@@ -1,0 +1,18 @@
+# Ignore local workspace compilation folders
+build/
+install/
+log/
+.colcon/
+
+# Ignore Python runtime files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore local editor layouts
+.vscode/
+
+# Ignore heavy raw screen capture storage
+*.mp4
+*.mov
+*.avi
