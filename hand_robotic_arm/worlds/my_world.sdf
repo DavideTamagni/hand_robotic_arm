@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="default">
+    <!-- Load Default plugins for environment -->
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+
+    <!-- Set up Bullet Physics for Mimic Joints -->
+    <physics type="bullet">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <bullet>
+        <solver>
+          <type>sequential_impulse</type>
+        </solver>
+        <!-- Featherstone is required for rigid body constraint chains like mimics -->
+        <featherstone>true</featherstone>
+      </bullet>
+    </physics>
+
+    <!-- Basic Scene Assets -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.5 0.5 0.5 1</specular>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal></plane></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Physical Support Box / Table (20cm High) -->
+    <model name="support_table">
+      <static>true</static> <!-- This locks the table in place so gravity won't move it -->
+      <!-- Center the table at your exact can coordinates. z=0.1 means its center is at 10cm, making the top flush at 20cm -->
+      <pose>0.09 0.70 0.1 0 0 0</pose> 
+      <link name="table_link">
+        <collision name="table_collision">
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size> <!-- 20cm x 20cm width, 20cm height -->
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode><mu>0.5</mu><mu2>0.5</mu2></ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="table_visual">
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1.0</ambient>
+            <diffuse>0.4 0.4 0.4 1.0</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+        <!-- Physical 330ml Soda Can Target Object -->
+    <model name="soda_can">
+      <!-- Positioned at x=-0.09, y=0.70 or 70cm to the left and 9cm rear of the robot base origin, aligned for the grasp pose -->
+      <!-- FIXED POSITION: Rests exactly on top of the 20cm table -->
+      <!-- Table height (0.2m) + Half of can height (0.115 / 2 = 0.0575) = 0.2575m -->
+      <pose>0.09 0.70 0.2575 0 0 0</pose>
+      <link name="can_link">
+
+        <!-- STABILIZER FIXED CODE: Adds damping to absorb initial simulation spawn vibrations -->
+        <velocity_decay>
+          <linear>0.5</linear>
+          <angular>0.5</angular>
+        </velocity_decay>
+
+        <inertial>
+          <mass>0.35</mass> <!-- ~350 grams when filled with liquid -->
+          <inertia>
+            <ixx>0.00048</ixx> <ixy>0</ixy> <ixz>0</ixz>
+            <iyy>0.00048</iyy> <iyz>0</iyz>
+            <izz>0.00019</izz>
+          </inertia>
+        </inertial>
+        <collision name="can_collision">
+          <geometry>
+            <cylinder>
+              <radius>0.03</radius> <!-- 60mm diameter -->
+              <length>0.115</length> <!-- 115mm height -->
+            </cylinder>
+          </geometry>
+          <!-- Surface friction coefficients so the hand can grip it securely -->
+          <surface>
+            <friction>
+              <ode>
+                <mu>2.0</mu>
+                <mu2>2.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+         <!-- HIDDEN BULLET STABILIZATION PAD (square 40x40x2mm base to stops the wobble on the box) -->
+          <!-- Positioned at z=-0.0575 to align perfectly with the bottom rim -->
+          <collision name='bullet_stabilizer_pad'>
+            <pose>0 0 -0.0575 0 0 0</pose>
+            <geometry>
+              <box><size>0.04 0.04 0.002</size></box>
+            </geometry>
+          </collision>
+        <visual name="can_visual">
+          <geometry>
+            <cylinder>
+              <radius>0.03</radius>
+              <length>0.115</length>
+            </cylinder>
+          </geometry>
+          <!-- Give it a distinct red material so it stands out in Gazebo -->
+          <material>
+            <ambient>0.8 0.0 0.0 1.0</ambient>
+            <diffuse>0.8 0.0 0.0 1.0</diffuse>
+            <specular>0.5 0.5 0.5 1.0</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>
+
+
+    

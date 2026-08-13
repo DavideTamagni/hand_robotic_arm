@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-model href="http://ros.org" schematypens="http://w3.org"?>
+<package format="3">
+  <name>hand_robotic_arm</name>
+  <version>0.0.0</version>
+  <description>Humanoid Hand and Robotic Arm Package</description>
+  <maintainer email="user@todo.todo">user</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Core Execution Dependencies -->
+  <depend>rclcpp</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher</depend> <!-- Crucial for MoveIt's mimic visualisations -->
+  <depend>controller_manager</depend>
+
+  <!-- Gazebo Harmonic Integration Drivers -->
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_bridge</depend>
+  <depend>gz_ros2_control</depend>
+  <depend>joint_trajectory_controller</depend>
+  <depend>joint_state_broadcaster</depend>
+  <depend>moveit_py</depend>
+
+  
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

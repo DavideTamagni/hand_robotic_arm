@@ -1,0 +1,47 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    arm_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    hand_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+arm_group_controller:
+  ros__parameters:
+    joints:
+      - base_joint
+      - shoulder_joint
+      - elbow_joint
+      - rotating_forearm_joint
+      - wrist_pitch_joint
+      - wrist_yaw_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+
+hand_group_controller:
+  ros__parameters:
+    joints:
+      - thumb_base_joint
+      - thumb_joint     
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+    # parameters to manage the hand_group_controller's active internal state communication channels
+    state_publish_rate: 50.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.05  # Relaxed slightly to handle mechanical friction settling
+      goal_time: 0.5   # Gives the joint 0.5 seconds of slack to lock onto the target point
+      
