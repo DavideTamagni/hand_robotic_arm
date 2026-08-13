@@ -101,7 +101,7 @@ To break down the continuous visual execution shown above, the node organizes th
 ```bash
 # Clone the repository into your ros2 workspace src directory
 cd ~/ros2_ws/src
-git clone https://github.com
+git clone https://https://github.com/G1taman/hand_robotic_arm.git
 
 # Install dependencies and build
 cd ~/ros2_ws
