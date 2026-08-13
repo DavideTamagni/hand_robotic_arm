@@ -1,4 +1,4 @@
-# 9-DOF Manipulator with 5-Fingered Hand Anthropomorphic End-Effector
+# 9-DOF Manipulator with 5-Finger Hand Anthropomorphic End-Effector
 > **An end-to-end ROS 2 Jazzy & Gazebo Harmonic integration showcase featuring multi-contact humanoid manipulation.**
 
 <p align="center">
@@ -33,7 +33,7 @@ By leveraging quaternion-based kinematics representations via native MoveIt spat
 ## System Architecture
 
 ### 9-DOF Humanoid Hand Kinematics & Coupling
-Instead of a standard parallel gripper, this manipulator integrates a **custom-designed 5-fingered humanoid hand** driven by complex kinematic constraints:
+Instead of a standard parallel gripper, this manipulator integrates a **custom-designed 5-finger humanoid hand** driven by complex kinematic constraints:
 * **Arm Configuration (6 DoF):** Comprises a Shoulder, Upper Arm, Elbow, Rotating Forearm, Wrist Pitch, and Wrist Yaw joint configuration, enabling full omnidirectional Cartesian reachability.
 * **Hand Configuration (3 DoF):** Features an independently driven dual-joint thumb assembly (Thumb Base Joint and Thumb Joint) to coordinate a true human-like opposition grasp profile.
 * **Coupled Finger Underactuation:** The 4 remaining structural fingers operate on independent joints but are driven cleanly via **mimic joint control laws** mapped back to the primary thumb driver. This allows high-surface-area wrapping configurations using minimal actuator overhead.
