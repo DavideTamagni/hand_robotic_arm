@@ -126,3 +126,9 @@ python3 src/hand_robotic_arm/scripts/precise_pick_can.py
 In terminal 3, execute the asynchronous scene manager to instantly reset the target can with a single keystroke
 ```bash
 python3 src/hand_robotic_arm/scripts/reset_scene_enter.py
+```
+
+### Upcoming Roadmap 
+[x] Phase 1: Headless 9-DOF Manipulation & MoveIt 2 Simulation.
+[ ] Phase 2: Brushless DC (BLDC) Field-Oriented Control (FOC) Integration.
+[ ] Phase 3: Custom Cycloidal Gear Reducer Design & Physical Fabrication.
