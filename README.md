@@ -6,7 +6,7 @@
 </p>
 
 ## Key Highlights & Engineering Achievements
-* **9-DOF Mechatronic Synthesis:** Engineered a high-articulation manipulator combining a 6-DOF positioning arm with a 3-DoF actuated, underactuated anthropomorphic hand framework.
+* **9-DOF Mechatronic Synthesis:** Engineered a high-articulation manipulator combining a 6-DOF positioning arm with a 3-DOF actuated, underactuated anthropomorphic hand framework.
 * **Underactuated Kinematic Mapping:** Successfully implemented multi-joint coupling by using ROS 2 mimic constraints to slave 4 independent finger joints to the thumb's primary actuation profile.
 * **Modern Middleware Integration:** Developed native control nodes leveraging the **ROS 2 Jazzy** ecosystem, **MoveIt 2**, and **Gazebo Harmonic** via `ros_gz_bridge`.
 * **Advanced Physics Tuning:** Resolved contact-force oscillations and cylinder-on-surface instability within the **Bullet-Featherstone** physics engine by engineering a custom composite multi-collision shape workaround.
