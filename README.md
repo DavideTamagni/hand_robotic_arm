@@ -133,7 +133,7 @@ python3 src/hand_robotic_arm/scripts/reset_scene_enter.py
 - [x] **Phase 1:** Headless 9-DOF Manipulation & MoveIt 2 Simulation.
 
 
-- [ ] **Phase 2:** Brushless DC (BLDC) Field-Oriented Control (FOC) Integration.
+- [x] **Phase 2:** Brushless DC (BLDC) Field-Oriented Control (FOC) Integration.
 
 
-- [ ] **Phase 3:** Custom Cycloidal Gear Reducer Design & Physical Fabrication.
+- [x] **Phase 3:** Custom Cycloidal Gear Reducer Design & Physical Fabrication.
